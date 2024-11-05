@@ -403,7 +403,7 @@
               </p>
               <div class="d-flex flex-wrap justify-content-end">
                 {{if eq $app.Status 1 }}
-                <a class="btn btn-outline-light mt-2 ms-2" href="{{$app.InstallUrl}}">Установить</a>
+                <a class="btn btn-outline-light mt-2 ms-2" href="#" onclick="Telegram.WebApp.openUrl({{$app.InstallUrl}})">Установить</a>
                 {{end}} {{if ne $app.Status 1 }}
                 <a
                   class="btn btn-outline-light mt-2 ms-2 {{if lt (len $app.WorkflowUrl) 1}}disabled{{end}}"
