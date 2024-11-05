@@ -58,7 +58,7 @@
           <input class="form-check-input" type="checkbox" id="chkAutoRefresh" />
           <label class="form-check-label text-white" for="chkAutoRefresh" id="lblAutoRefresh">Refresh</label>
         </div>
-        <a id="btnUploadApp" class="btn btn-outline-light my-0"> Upload App </a>
+        <a id="btnUploadApp" class="btn btn-outline-light my-0"> Загрузить приложение </a>
       </div>
     </nav>
     <div class="modal" id="uploadModal" tabindex="-1">
@@ -66,7 +66,7 @@
         <div class="modal-content">
           <form id="uploadForm" action="/apps" method="post" enctype="multipart/form-data">
             <div class="modal-header">
-              <h5 class="modal-title">Upload App</h5>
+              <h5 class="modal-title">Загрузить приложение</h5>
               <button id="btnModalClose" type="button" class="btn-close"></button>
             </div>
             <div id="modalBody" class="modal-body">
@@ -80,7 +80,7 @@
                     type="button"
                     role="tab"
                   >
-                    Main
+                    Основное
                   </button>
                   <button
                     class="nav-link"
@@ -90,7 +90,7 @@
                     type="button"
                     role="tab"
                   >
-                    Advanced
+                    Продвинутое
                   </button>
                 </div>
               </nav>
@@ -98,7 +98,7 @@
                 <div class="tab-pane active pt-2" id="nav-main" role="tabpanel">
                   <div class="mb-2">
                     <div class="d-flex justify-content-between">
-                      <label class="form-label">App file</label>
+                      <label class="form-label">Файл</label>
                       <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="formFileUseUrl" />
                         <label class="form-check-label" for="formFileUseUrl">URL</label>
@@ -126,16 +126,16 @@
                     />
                   </div>
                   <div class="mb-2 col-md-8">
-                    <label for="formProfile" class="form-label">Signing profile</label>
+                    <label for="formProfile" class="form-label">Профиль подписи</label>
                     <select class="form-select" id="formProfile" name="{{.FormProfileId}}" required>
-                      <option selected disabled value="">Choose...</option>
+                      <option selected disabled value="">Выберите...</option>
                       {{range $_, $profile := .Profiles}}
                       <option value="{{$profile.Id}}" account="{{$profile.IsAccount}}">{{$profile.Name}}</option>
                       {{end}}
                     </select>
                   </div>
                   <div class="mb-2 col-md-8">
-                    <label for="formBuilder" class="form-label">Builder</label>
+                    <label for="formBuilder" class="form-label">Сборщик</label>
                     <select class="form-select" id="formBuilder" name="{{.FormBuilderId}}" required>
                       {{range $_, $builder := .Builders}}
                       <option value="{{$builder.Id}}">{{$builder.Name}}</option>
@@ -143,7 +143,7 @@
                     </select>
                   </div>
                   <div class="mb-2 col-md-9">
-                    <label class="form-label">Bundle identifier</label>
+                    <label class="form-label">ID пакета</label>
                     <div class="form-check">
                       <input
                         class="form-check-input"
@@ -154,7 +154,7 @@
                         checked
                       />
                       <label style="display: inline" class="form-check-label" for="formIdOriginal">
-                        Use app's original bundle ID
+                        Использовать оригинальный ID
                       </label>
                     </div>
                     <div class="form-check">
@@ -166,46 +166,27 @@
                         value="{{.FormIdProv}}"
                       />
                       <label style="display: inline" class="form-check-label" for="formIdProv">
-                        Use provisioning profile's application ID
+                        Использовать ID профиля подписи
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Fixes entitlements with explicit provisioning profiles.
-                                For each profile, only one app signed this way can be installed at a time."
+                        title="Исправляет права с явными профилями подписи.
+                                Для каждого профиля только одно приложение, подписанное таким образом, может быть установлено."
                         >?</a
                       >
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        id="formIdCustom"
-                        name="{{.FormId}}"
-                        value="{{.FormIdCustom}}"
-                      />
-                      <label style="display: inline" class="form-check-label" for="formIdCustom"> Use custom: </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="{{.FormIdCustomText}}"
-                        disabled
-                        id="formIdCustomText"
-                        placeholder="com.custom.app"
-                        required
-                      />
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane pt-2" id="nav-advanced" role="tabpanel">
                   <div class="mb-2 col-md-8">
-                    <label for="formBundleName" class="form-label">Bundle name (optional)</label>
+                    <label for="formBundleName" class="form-label">Имя приложения (необяз)</label>
                     <a
                       style="color: blue"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="The app's name on the home screen. Leave empty for unchanged."
+                      title="Имя приложения на домашнем экране. Будет стандартным, если не указано."
                       >?</a
                     >
                     <input
@@ -213,11 +194,11 @@
                       class="form-control"
                       name="{{.FormBundleName}}"
                       id="formBundleName"
-                      placeholder="My Custom App"
+                      placeholder="Моё Имя"
                     />
                   </div>
                   <div class="mb-2">
-                    <label class="form-label">ID options</label>
+                    <label class="form-label">Опции ID</label>
                     <div class="form-check">
                       <input
                         class="form-check-input"
@@ -227,13 +208,13 @@
                         disabled
                       />
                       <label style="display: inline" class="form-check-label" for="formIdEncode">
-                        Encode original IDs to unique IDs
+                        Кодирование original IDs в unique IDs
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Allows you to sign apps whose IDs you do not own."
+                        title="Позволяет вам подписывать приложения, идентификаторы которых вам не принадлежат."
                         >?</a
                       >
                     </div>
@@ -246,13 +227,13 @@
                         checked
                       />
                       <label style="display: inline" class="form-check-label" for="formIdPatch">
-                        Patch new IDs into app's binaries
+                        Патч новых ID в файлах
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Fixes cases where the app expects its old IDs. Disable this if you have issues."
+                        title="Исправляет случаи, когда приложение ожидало свои старые идентификаторы. Отключите это, если у вас возникли проблемы."
                         >?</a
                       >
                     </div>
@@ -262,15 +243,16 @@
                         type="checkbox"
                         id="formIdForceOriginal"
                         name="{{.FormIdForceOriginal}}"
+                        disabled
                       />
                       <label style="display: inline" class="form-check-label" for="formIdForceOriginal">
-                        Force original bundle ID
+                        Принудительно оригинальный ID пакета
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Fixes push notifications. Requires distribution certificate. Can break entitlements."
+                        title="Иправляет уведомления. Требует сертификат дистрибукции. Может сломать привелегии. (я это отключил из-за PPQCheck - загуглите)"
                         >?</a
                       >
                     </div>
@@ -280,13 +262,13 @@
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="formAppDebug" name="{{.FormAppDebug}}" />
                       <label style="display: inline" class="form-check-label" for="formAppDebug">
-                        Enable app debugging
+                        Включить дебаг-режим
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Necessary for some emulators and jailbreaks. Requires development certificate."
+                        title="Нужно для некоторых эмуляторов и джейлбрейков. Нужен сертификат разработки."
                         >?</a
                       >
                     </div>
@@ -299,50 +281,50 @@
                         name="{{.FormAllDevices}}"
                       />
                       <label style="display: inline" class="form-check-label" for="formAllDevices">
-                        Force enable support for all devices
+                        Поддержка всех версий iOS
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Removes any iOS version or device model restrictions from the app."
+                        title="Удаляет ограничения на версию iOS из приложения."
                         >?</a
                       >
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="formMac" name="{{.FormMac}}" />
                       <label style="display: inline" class="form-check-label" for="formMac">
-                        Apply patches for Mac
+                        Патчи для Mac
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Applies patches that make the app work better on Mac, such as freeform window resizing."
+                        title="Применяет исправления, улучшающие работу приложения на Mac, такие как изменение размера окна произвольной формы."
                         >?</a
                       >
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="formFileShare" name="{{.FormFileShare}}" />
                       <label style="display: inline" class="form-check-label" for="formFileShare">
-                        Force enable file sharing
+                        Принудительный шеринг файлов
                       </label>
                       <a
                         style="color: blue"
                         data-bs-toggle="tooltip"
                         data-bs-placement="right"
-                        title="Allows you to access the app's data via the Files app, iTunes, and other file managers."
+                        title="Позволяет вам получать доступ к данным приложения через приложение Файлы, iTunes и другие файловые менеджеры."
                         >?</a
                       >
                     </div>
                   </div>
                   <div class="mb-0">
-                    <label class="form-label">Tweaks (optional)</label>
+                    <label class="form-label">Твики (опц)</label>
                     <a
                       style="color: blue"
                       data-bs-toggle="tooltip"
                       data-bs-placement="right"
-                      title="Injects tweaks into the app. Does not always work."
+                      title="Вносит изменения в приложение. Не всегда работает."
                       >?</a
                     >
                     <input class="form-control" type="file" id="formTweaksSelect" multiple />
@@ -376,8 +358,8 @@
     <div class="container py-4 py-xxl-5 py-xl-5 px-4">
       <div class="row col-md-8 col-l-7 col-xl-6 px-0 mx-auto pb-3">
         <div class="input-group px-0">
-          <input type="text" id="inputSearchFilter" class="form-control" placeholder="Search app name" autofocus />
-          <button class="btn btn-outline-secondary" id="btnSearchClear">Clear</button>
+          <input type="text" id="inputSearchFilter" class="form-control" placeholder="Поиск по имени" autofocus />
+          <button class="btn btn-outline-secondary" id="btnSearchClear">Очистить</button>
         </div>
       </div>
       <div class="row" id="masonryRow">
@@ -402,44 +384,44 @@
                     <a class="bi bi-three-dots-vertical py-1 px-2" data-bs-toggle="dropdown"></a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item dropdownCreateFrom" x-app-name="{{$app.Name}}" x-app-id="{{$app.Id}}"
-                        >Create from...</a
+                        >Создать из...</a
                       >
-                      <a class="dropdown-item" href="{{$app.RenameUrl}}">Rename...</a>
-                      <a class="dropdown-item" href="{{$app.ResignUrl}}">Resign</a>
-                      <a class="dropdown-item" href="{{$app.DeleteUrl}}">Delete</a>
+                      <a class="dropdown-item" href="{{$app.RenameUrl}}">Переименовать...</a>
+                      <a class="dropdown-item" href="{{$app.ResignUrl}}">Переподписать</a>
+                      <a class="dropdown-item" href="{{$app.DeleteUrl}}">Удалить</a>
                     </div>
                   </div>
                 </div>
               </div>
               <p class="card-text mb-2">
-                {{if gt $app.TweakCount 0}} {{$app.TweakCount}} tweaks <br />
+                {{if gt $app.TweakCount 0}} {{$app.TweakCount}} твиков <br />
                 {{end}} {{if eq $app.Status 1 }} {{$app.BundleId}} <br />
                 {{end}} {{$app.ProfileName}} <br />
-                {{if eq $app.Status 0 }} Processing {{else if eq $app.Status 1 }} Signed {{else if eq $app.Status 2 }}
-                Failed {{else if eq $app.Status 3 }} Waiting {{end}} <br />
+                {{if eq $app.Status 0 }} Обработка {{else if eq $app.Status 1 }} Подписано {{else if eq $app.Status 2 }}
+                Ошибка {{else if eq $app.Status 3 }} Ожидает {{end}} <br />
                 {{$app.ModTime}}
               </p>
               <div class="d-flex flex-wrap justify-content-end">
                 {{if eq $app.Status 1 }}
-                <a class="btn btn-outline-light mt-2 ms-2" href="{{$app.InstallUrl}}">Install</a>
+                <a class="btn btn-outline-light mt-2 ms-2" href="{{$app.InstallUrl}}">Установить</a>
                 {{end}} {{if ne $app.Status 1 }}
                 <a
                   class="btn btn-outline-light mt-2 ms-2 {{if lt (len $app.WorkflowUrl) 1}}disabled{{end}}"
                   href="{{$app.WorkflowUrl}}"
-                  >Status</a
+                  >Статус</a
                 >
                 {{end}} {{if or (eq $app.Status 0) (eq $app.Status 3)}}
-                <a class="btn btn-outline-light mt-2 ms-2" href="{{$app.TwoFactorUrl}}">Submit 2FA</a>
+                <a class="btn btn-outline-light mt-2 ms-2" href="{{$app.TwoFactorUrl}}">Отправить 2FA</a>
                 {{end}} {{if or (eq $app.Status 1) (eq $app.Status 2)}}
                 <div class="dropdown">
-                  <a class="btn btn-outline-light mt-2 ms-2 dropdown-toggle" data-bs-toggle="dropdown">Download</a>
+                  <a class="btn btn-outline-light mt-2 ms-2 dropdown-toggle" data-bs-toggle="dropdown">Скачать</a>
                   <ul class="dropdown-menu">
                     {{if eq $app.Status 1 }}
-                    <li><a class="dropdown-item" href="{{$app.DownloadSignedUrl}}">Signed</a></li>
+                    <li><a class="dropdown-item" href="{{$app.DownloadSignedUrl}}">Подписанное</a></li>
                     {{end}}
-                    <li><a class="dropdown-item" href="{{$app.DownloadUnsignedUrl}}">Original</a></li>
+                    <li><a class="dropdown-item" href="{{$app.DownloadUnsignedUrl}}">Оригинал</a></li>
                     {{if gt $app.TweakCount 0}}
-                    <li><a class="dropdown-item" href="{{$app.DownloadTweaksUrl}}">Tweaks</a></li>
+                    <li><a class="dropdown-item" href="{{$app.DownloadTweaksUrl}}">Твики</a></li>
                     {{end}}
                   </ul>
                 </div>

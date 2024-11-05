@@ -656,9 +656,9 @@ func uploadUnsignedApp(c echo.Context) error {
 	if c.FormValue(formNames.FormIdEncode) != "" {
 		signArgs += " -e"
 	}
-	if c.FormValue(formNames.FormIdForceOriginal) != "" {
-		signArgs += " -o"
-	}
+	// if c.FormValue(formNames.FormIdForceOriginal) != "" {
+	// 	signArgs += " -o"
+	// }
 	if c.FormValue(formNames.FormIdPatch) != "" {
 		signArgs += " -p"
 	}

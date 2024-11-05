@@ -35,7 +35,7 @@
       <div class="container px-4">
         <ol class="breadcrumb bg-transparent py-2 my-0 me-auto text-white">
           <li class="breadcrumb-item"><a href="/">SignTools</a></li>
-          <li class="breadcrumb-item">Rename App</li>
+          <li class="breadcrumb-item">Переименовать</li>
         </ol>
       </div>
     </nav>
@@ -44,17 +44,17 @@
         <div class="modal-content">
           <form id="uploadForm" method="post" enctype="multipart/form-data">
             <div class="modal-header">
-              <h5 class="modal-title">Rename App</h5>
+              <h5 class="modal-title">Переименовать</h5>
               <a id="btnModalClose" class="btn-close" href="/"></a>
             </div>
             <div class="modal-body">
               <div class="mb-0">
-                <label class="form-check-label mb-3" for="formName"> App name </label>
+                <label class="form-check-label mb-3" for="formName"> Имя </label>
                 <input required type="text" class="form-control" name="name" id="formName" value="{{.AppName}}" />
               </div>
             </div>
             <div class="modal-footer">
-              <button id="formSubmit" type="submit" class="btn btn-primary">Submit</button>
+              <button id="formSubmit" type="submit" class="btn btn-primary">Отправить</button>
             </div>
           </form>
         </div>
