@@ -44,14 +44,13 @@
         <div class="modal-content">
           <form id="uploadForm" method="post" enctype="multipart/form-data" novalidate>
             <div class="modal-header">
-              <h5 class="modal-title">Submit 2FA code</h5>
+              <h5 class="modal-title">Отправить 2FA</h5>
               <a id="btnModalClose" class="btn-close" href="/"></a>
             </div>
             <div class="modal-body">
               <div class="mb-0">
                 <label class="form-check-label mb-3" for="formToken">
-                  If two-factor authentication (2FA) is necessary to sign this app, you will receive a 6-digit
-                  verification code by Apple after about a minute. If you do, please enter it here:
+                  Иногда приложения требут 2FA для подписи, это может сделать только владелец сервиса, попросите его, если приложение не устанавливается. ❤️
                 </label>
                 <input
                   type="text"
@@ -64,11 +63,11 @@
                   placeholder="123456"
                   autofocus
                 />
-                <div class="invalid-feedback">Please enter a valid 6-digit 2FA code.</div>
+                <div class="invalid-feedback">Введите код 2FA:</div>
               </div>
             </div>
             <div class="modal-footer">
-              <button id="formSubmit" type="submit" class="btn btn-primary">Submit</button>
+              <button id="formSubmit" type="submit" class="btn btn-primary">Отправить</button>
             </div>
           </form>
         </div>
